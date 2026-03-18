@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>7-Day Transformation Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#080a0d;--card:#141920;--border:#1e2736;--accent:#f97316;--accent2:#fb923c;--green:#22c55e;--blue:#38bdf8;--purple:#c084fc;--text:#cbd5e1;--muted:#4b5875;--white:#f1f5f9}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+
+.hero{position:relative;overflow:hidden;padding:60px 20px 44px;text-align:center;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,.13) 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.015) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.015) 40px);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--accent);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;padding:6px 18px;border-radius:99px;margin-bottom:22px;position:relative;z-index:1}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,12vw,108px);line-height:.88;color:var(--white);position:relative;z-index:1}
+h1 em{color:var(--accent);font-style:normal}
+.sub{font-size:13px;color:var(--muted);margin-top:16px;position:relative;z-index:1}
+.stats{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:30px;position:relative;z-index:1}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 20px}
+.stat b{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--accent);display:block;line-height:1}
+.stat span{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+
+.daynav{position:sticky;top:0;z-index:200;background:rgba(8,10,13,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding:0 12px}
+.daynav::-webkit-scrollbar{display:none}
+.daynav-inner{display:inline-flex;gap:4px;padding:10px 0}
+.db{background:transparent;border:1px solid transparent;color:var(--muted);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.5px;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.db:hover{color:var(--text);border-color:var(--border)}
+.db.on{background:var(--accent);color:#000;font-weight:700;border-color:var(--accent)}
+
+.wrap{max-width:900px;margin:0 auto;padding:32px 14px 90px}
+.panel{display:none}
+.panel.on{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.dhead{display:grid;grid-template-columns:90px 1fr;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:28px;border-left:4px solid var(--accent)}
+.dnum{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--accent);opacity:.18;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--border)}
+.dmeta{padding:22px 24px}
+.dtitle{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--white);line-height:1}
+.dfocus{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
+.dtags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.tag{font-size:10px;font-family:'Space Mono',monospace;padding:3px 9px;border-radius:4px;border:1px solid}
+.to{color:var(--accent);border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.07)}
+.tg{color:var(--green);border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.07)}
+.tb{color:var(--blue);border-color:rgba(56,189,248,.35);background:rgba(56,189,248,.07)}
+.tp{color:var(--purple);border-color:rgba(192,132,252,.35);background:rgba(192,132,252,.07)}
+
+.slabel{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:6px}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.exlist{display:flex;flex-direction:column;gap:14px;margin-bottom:26px}
+.excard{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.excard:hover{border-color:rgba(249,115,22,.35);box-shadow:0 0 24px rgba(249,115,22,.07)}
+.extop{display:grid;grid-template-columns:260px 1fr}
+@media(max-width:580px){.extop{grid-template-columns:1fr}.dnum{font-size:52px}}
+
+.vidwrap{position:relative;background:#000;aspect-ratio:16/9}
+.vidwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vbadge{position:absolute;top:8px;left:8px;z-index:3;background:var(--accent);color:#000;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:5px;pointer-events:none}
+
+.exinfo{padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.exname{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white)}
+.exmus{font-size:12px;color:var(--accent);margin-top:2px}
+.mets{display:flex;gap:16px;flex-wrap:wrap}
+.met b{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--white);display:block;line-height:1.1}
+.met span{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+
+.stbtn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:11px;padding:7px 13px;border-radius:7px;cursor:pointer;transition:all .2s;width:fit-content}
+.stbtn:hover,.stbtn.open{border-color:var(--accent);color:var(--accent);background:rgba(249,115,22,.07)}
+.arr{transition:transform .25s;font-size:9px}
+.stbtn.open .arr{transform:rotate(180deg)}
+.sbody{display:none;padding:16px 20px 20px;border-top:1px solid var(--border)}
+.sbody.open{display:block}
+.slist{list-style:none;display:flex;flex-direction:column;gap:10px}
+.slist li{display:flex;gap:12px;font-size:13px;line-height:1.55;color:#8899b0}
+.sn{min-width:24px;height:24px;border-radius:50%;background:rgba(249,115,22,.12);color:var(--accent);font-family:'Space Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.tip{margin-top:14px;padding:11px 14px;background:rgba(249,115,22,.06);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:13px;color:var(--accent2);line-height:1.55}
+.tip strong{color:var(--accent)}
+
+.cbar{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(249,115,22,.1),rgba(249,115,22,.04));border:1px solid rgba(249,115,22,.22);border-radius:14px;padding:20px 24px;margin-bottom:26px}
+.cicon{font-size:40px;flex-shrink:0}
+.ctitle{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent)}
+.cdesc{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
+
+.tnote{display:flex;gap:14px;align-items:flex-start;background:#0f1318;border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-top:18px}
+.ticon{font-size:28px;flex-shrink:0}
+.ttitle{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px}
+.tnote p{font-size:13px;color:var(--muted);line-height:1.65}
+
+.restcard{background:radial-gradient(ellipse at top,rgba(34,197,94,.08),transparent 60%),var(--card);border:1px solid rgba(34,197,94,.2);border-radius:18px;padding:50px 28px;text-align:center}
+.remi{font-size:68px;margin-bottom:16px}
+.rtitle{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--green)}
+.rsub{color:var(--muted);font-size:14px;margin-top:10px;line-height:1.8;max-width:460px;margin-inline:auto}
+
+footer{text-align:center;padding:32px;border-top:1px solid var(--border);font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;line-height:2}
+footer em{color:var(--accent);font-style:normal}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">PERSONAL CELEBRITY TRAINER PLAN</div>
+  <h1>7 DAY<br/><em>TRANSFORMATION</em></h1>
+  <p class="sub">92kg · Vegetarian · Full Gym · Complete Beginner · Phase 1 of 3</p>
+  <div class="stats">
+    <div class="stat"><b>6</b><span>Training Days</span></div>
+    <div class="stat"><b>92kg</b><span>Start Weight</span></div>
+    <div class="stat"><b>8W</b><span>Phase One</span></div>
+    <div class="stat"><b>↓</b><span>Belly First</span></div>
+  </div>
+</div>
+
+<nav class="daynav">
+  <div class="daynav-inner">
+    <button class="db on" onclick="go(1,this)">DAY 1 · PUSH</button>
+    <button class="db" onclick="go(2,this)">DAY 2 · PULL</button>
+    <button class="db" onclick="go(3,this)">DAY 3 · LEGS</button>
+    <button class="db" onclick="go(4,this)">DAY 4 · CORE</button>
+    <button class="db" onclick="go(5,this)">DAY 5 · UPPER</button>
+    <button class="db" onclick="go(6,this)">DAY 6 · ACTIVE</button>
+    <button class="db" onclick="go(7,this)">DAY 7 · REST</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ══ DAY 1 ══ -->
+<div class="panel on" id="p1">
+  <div class="dhead"><div class="dnum">01</div><div class="dmeta">
+    <div class="dtitle">PUSH DAY</div>
+    <div class="dfocus">Chest · Shoulders · Triceps — Width makes your waist look slimmer before losing a single kg</div>
+    <div class="dtags"><span class="tag to">CHEST</span><span class="tag tb">SHOULDERS</span><span class="tag tp">TRICEPS</span><span class="tag tg">~50 MIN</span></div>
+  </div></div>
+  <div class="slabel">EXERCISES — TAP VIDEO TO WATCH FORM</div>
+  <div class="exlist">
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 1</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/8iPEnn-ltC8?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Incline Dumbbell Press</div><div class="exmus">Upper Chest · Front Delts</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Set bench to 30–45° incline. Sit back with a dumbbell in each hand resting on thighs.</span></li>
+        <li><span class="sn">2</span><span>Kick the dumbbells up as you lie back, holding them at chest level, palms forward.</span></li>
+        <li><span class="sn">3</span><span>Press up and slightly inward until arms extended — don't fully lock elbows at top.</span></li>
+        <li><span class="sn">4</span><span>Lower slowly in 2–3 seconds feeling a deep chest stretch at the bottom.</span></li>
+        <li><span class="sn">5</span><span>Back slightly arched, feet flat, core engaged throughout every rep.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Start with 8–10kg. Feel it in your upper chest, not shoulders. If shoulders take over, lower the bench angle slightly.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 2</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/3VcKaXpzqRo?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Lateral Raises</div><div class="exmus">Side Delts — Creates Shoulder Width</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>15</b><span>Reps</span></div><div class="met"><b>45s</b><span>Rest</span></div><div class="met"><b>4–6kg</b><span>Weight</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Stand feet shoulder-width, dumbbells at sides, palms inward. Slight bend in elbows.</span></li>
+        <li><span class="sn">2</span><span>Raise both arms out to sides until parallel to floor — no higher than shoulder height.</span></li>
+        <li><span class="sn">3</span><span>At the top, tilt pinky slightly higher — like pouring water from a jug. Activates side delt fully.</span></li>
+        <li><span class="sn">4</span><span>Lower slowly in 2–3 seconds. Zero swinging or momentum allowed.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Wide shoulders = smaller-looking waist. Use very light weight — if traps burn more than shoulders, drop the weight immediately.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 3</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/2-LAMcpzODU?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Tricep Pushdown</div><div class="exmus">Triceps — Horseshoe Definition</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>15</b><span>Reps</span></div><div class="met"><b>45s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Attach bar or rope to high pulley of cable machine.</span></li>
+        <li><span class="sn">2</span><span>Stand facing machine, slight forward lean. Elbows pinned tight to sides — they must not move.</span></li>
+        <li><span class="sn">3</span><span>Push down until arms fully extended. Squeeze triceps hard for 1 second at the bottom.</span></li>
+        <li><span class="sn">4</span><span>Allow bar to rise slowly in 2 seconds. Elbows stay locked to sides throughout.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Triceps = 2/3 of your arm size. This builds the horseshoe definition that makes arms look strong and toned.</div></div>
+    </div>
+
+  </div>
+  <div class="cbar"><div class="cicon">🏃</div><div><div class="ctitle">Finish: 15 Min Incline Treadmill Walk</div><div class="cdesc">Speed 5.5–6 km/h · Incline 8–10% · Burns 2× more calories than flat walking. Your belly fat weapon.</div></div></div>
+  <div class="tnote"><div class="ticon">🎬</div><div><div class="ttitle">Celebrity Trainer Note</div><p>When I prep actors for shirtless scenes, shoulder width is the #1 visual trick. It makes the waist look narrower even before losing a single kg. Do Push Day religiously.</p></div></div>
+</div>
+
+<!-- ══ DAY 2 ══ -->
+<div class="panel" id="p2">
+  <div class="dhead"><div class="dnum">02</div><div class="dmeta">
+    <div class="dtitle">PULL DAY</div>
+    <div class="dfocus">Back · Biceps — Strong back fixes posture & makes you look 4kg lighter instantly</div>
+    <div class="dtags"><span class="tag tb">BACK</span><span class="tag tp">BICEPS</span><span class="tag tg">~50 MIN</span></div>
+  </div></div>
+  <div class="slabel">EXERCISES</div>
+  <div class="exlist">
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 1</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/CAwf7n6Luuc?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Lat Pulldown (Wide Grip)</div><div class="exmus">Lats · Upper Back — The V-Taper Muscle</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Sit at lat pulldown, thighs secured. Grip bar wider than shoulder-width, palms facing away.</span></li>
+        <li><span class="sn">2</span><span>Lean back slightly (15–20°), chest up and proud throughout.</span></li>
+        <li><span class="sn">3</span><span>Pull bar toward upper chest, LEADING WITH ELBOWS — think "elbows into back pockets."</span></li>
+        <li><span class="sn">4</span><span>Hold 1 second squeezing lats hard. Release slowly upward in 3 seconds.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Lats are your widest muscle — building them creates a V-shape that makes your belly look smaller from every angle.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 2</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/GZbfZ033f74?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Seated Cable Row</div><div class="exmus">Mid Back · Rhomboids · Rear Delts</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Sit on cable row, feet on platform, knees slightly bent. Grab V-bar, sit tall, back straight.</span></li>
+        <li><span class="sn">2</span><span>Pull handle toward lower abdomen, elbows close to body throughout.</span></li>
+        <li><span class="sn">3</span><span>PINCH shoulder blades together hard for 1–2 seconds. This is the entire point.</span></li>
+        <li><span class="sn">4</span><span>Return slowly in 3 seconds. Only arms and shoulders move — zero torso rocking.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> This corrects forward head posture from sitting all day. Better posture = you look slimmer the instant you stand up straight.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 3</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/ykJmrZ5v0Oo?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Dumbbell Bicep Curl</div><div class="exmus">Biceps · Brachialis</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>45s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Stand with dumbbells, arms extended at sides, palms facing forward.</span></li>
+        <li><span class="sn">2</span><span>Upper arms pinned to sides — they must NOT move during the curl at all.</span></li>
+        <li><span class="sn">3</span><span>Curl up, squeeze hard at the top for 1 second.</span></li>
+        <li><span class="sn">4</span><span>Lower SLOWLY in 3 seconds — the slow lowering builds more muscle than the curl itself.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Most beginners drop the weight fast on the way down — that's leaving 50% of gains on the table every single rep.</div></div>
+    </div>
+
+  </div>
+  <div class="cbar"><div class="cicon">🚶</div><div><div class="ctitle">Finish: 15 Min Incline Treadmill Walk</div><div class="cdesc">Speed 5.5–6 km/h · Incline 8–10% · Consistency here is your secret weapon for steady fat loss.</div></div></div>
+  <div class="tnote"><div class="ticon">💡</div><div><div class="ttitle">Why Back Training Visually Shrinks Your Belly</div><p>Weak back = shoulders roll forward = belly protrudes. 4 weeks of back training improves posture so dramatically that people think you've lost 5kg before the scale even moves.</p></div></div>
+</div>
+
+<!-- ══ DAY 3 ══ -->
+<div class="panel" id="p3">
+  <div class="dhead"><div class="dnum">03</div><div class="dmeta">
+    <div class="dtitle">LEG DAY</div>
+    <div class="dfocus">Quads · Hamstrings · Glutes · Calves — Biggest muscles = most calories burned per session</div>
+    <div class="dtags"><span class="tag to">QUADS</span><span class="tag tg">HAMSTRINGS</span><span class="tag tb">GLUTES</span><span class="tag tp">~55 MIN</span></div>
+  </div></div>
+  <div class="slabel">EXERCISES</div>
+  <div class="exlist">
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 1</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/IZxyjW7MPJQ?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Leg Press</div><div class="exmus">Quads · Glutes · Hamstrings</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>15</b><span>Reps</span></div><div class="met"><b>75s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Sit on leg press, back flat. Feet hip-width apart in the center of the platform.</span></li>
+        <li><span class="sn">2</span><span>Release safety. Lower platform until knees reach 90°. Knees track over toes.</span></li>
+        <li><span class="sn">3</span><span>Press through HEELS back up. Don't fully lock out knees at the top.</span></li>
+        <li><span class="sn">4</span><span>Lower back stays pressed to seat throughout. Never let hips lift off.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Higher foot placement = glutes/hamstrings. Lower = quads. Leg day burns most calories of any session — never skip it.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 2</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/MxsFDhcyFyE?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Goblet Squat</div><div class="exmus">Quads · Glutes · Core — Best Beginner Squat</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Hold dumbbell vertically at chest, both hands cupping top end. Feet wider than shoulder-width, toes out 30°.</span></li>
+        <li><span class="sn">2</span><span>Chest up, core braced. Push knees out over toes as you squat — aim for hips below knees.</span></li>
+        <li><span class="sn">3</span><span>Dumbbell counterbalances and keeps you upright. Elbows brush inner thighs at the bottom.</span></li>
+        <li><span class="sn">4</span><span>Drive through heels, squeeze glutes hard at top. Breathe out on the way up.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Getting low activates glutes 3× more than a shallow squat. Depth is everything here.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 3</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/7F4JnMDkHFM?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Romanian Deadlift</div><div class="exmus">Hamstrings · Glutes · Lower Back</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div><div class="met"><b>Light</b><span>Weight</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Stand feet hip-width, dumbbells in front of thighs, palms facing you.</span></li>
+        <li><span class="sn">2</span><span>HINGE at hips — push butt back, NOT bend at waist. Flat back throughout. This is the key move to learn.</span></li>
+        <li><span class="sn">3</span><span>Lower dumbbells along your legs until you feel a deep hamstring stretch. Stop before back rounds.</span></li>
+        <li><span class="sn">4</span><span>Drive hips forward to stand, squeeze glutes hard at the top.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Very light weight — technique first. Getting the hinge right protects your lower back and builds incredible hamstrings over time.</div></div>
+    </div>
+
+  </div>
+  <div class="cbar"><div class="cicon">🚴</div><div><div class="ctitle">Finish: 20 Min Moderate Cycling</div><div class="cdesc">RPM 70–80 · Medium resistance · Keeps blood moving, accelerates leg recovery, burns extra fat.</div></div></div>
+</div>
+
+<!-- ══ DAY 4 ══ -->
+<div class="panel" id="p4">
+  <div class="dhead"><div class="dnum">04</div><div class="dmeta">
+    <div class="dtitle">CORE BLAST + CARDIO</div>
+    <div class="dfocus">Your belly-attack day. Where the real transformation happens. No skipping — ever.</div>
+    <div class="dtags"><span class="tag to">ABS</span><span class="tag tg">CORE</span><span class="tag tb">CARDIO</span><span class="tag tp">~55 MIN</span></div>
+  </div></div>
+  <div class="slabel">CORE CIRCUIT — 3 ROUNDS · 30s REST BETWEEN ROUNDS</div>
+  <div class="exlist">
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">CORE 1</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/ASdvN_XEl_c?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Plank Hold</div><div class="exmus">Deep Core · Transverse Abdominis</div>
+          <div class="mets"><div class="met"><b>3</b><span>Rounds</span></div><div class="met"><b>30s</b><span>Hold</span></div><div class="met"><b>30s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Rest on forearms and toes. Elbows directly under shoulders. Perfectly straight line head to heels.</span></li>
+        <li><span class="sn">2</span><span>Squeeze glutes. Brace core as if someone is about to punch your stomach.</span></li>
+        <li><span class="sn">3</span><span>Hold 30 seconds breathing slowly. Build toward 60 seconds by Week 4.</span></li>
+        <li><span class="sn">4</span><span>If hips sag, take knees down. Perfect form beats longer duration every time.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> The plank trains the transverse abdominis — your deepest ab muscle, your natural corset. This is what actually pulls your stomach IN. Most important core exercise you'll do.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">CORE 2</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/JB2oyawG9KI?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Lying Leg Raises</div><div class="exmus">Lower Abs · Hip Flexors</div>
+          <div class="mets"><div class="met"><b>3</b><span>Rounds</span></div><div class="met"><b>15</b><span>Reps</span></div><div class="met"><b>30s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Lie flat on back, legs straight. Hands under glutes. Press lower back into floor throughout.</span></li>
+        <li><span class="sn">2</span><span>Raise both legs up to 90°, then lower slowly — stop just before feet touch the floor.</span></li>
+        <li><span class="sn">3</span><span>Take 3–4 seconds to lower. Slower = harder work on lower abs.</span></li>
+        <li><span class="sn">4</span><span>Too hard? Bend knees slightly. Straighten them as you get stronger week by week.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Lower abs are the last to show and last to go — these are exactly what create the flat belly look. Do them every Day 4 without fail.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">CORE 3</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/nmwgirgXLYM?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Mountain Climbers</div><div class="exmus">Core · Cardio · Hip Flexors</div>
+          <div class="mets"><div class="met"><b>3</b><span>Rounds</span></div><div class="met"><b>30s</b><span>Each</span></div><div class="met"><b>30s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>High plank — hands under shoulders, body in a straight line from head to heels.</span></li>
+        <li><span class="sn">2</span><span>Drive right knee toward chest as far as possible, quickly switch — left in, right out.</span></li>
+        <li><span class="sn">3</span><span>Keep hips level throughout — don't let them rise or dip as you alternate legs.</span></li>
+        <li><span class="sn">4</span><span>Move at a pace that elevates your heart rate. Core braced the entire time.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> 2-in-1: core training AND cardio simultaneously. Burns belly fat from outside while building strength from inside. Pure gold for your goal.</div></div>
+    </div>
+
+  </div>
+  <div class="cbar"><div class="cicon">🔥</div><div><div class="ctitle">Main Cardio: 25–30 Min Steady State</div><div class="cdesc">Treadmill / Elliptical / Cycling at 65–70% max heart rate. Slightly breathless but can still talk. After core circuit, your body taps directly into fat stores.</div></div></div>
+  <div class="tnote"><div class="ticon">⚠️</div><div><div class="ttitle">The Belly Fat Truth</div><p>You cannot crunch away belly fat. Crunches build the muscle underneath — cardio and a calorie deficit burn the fat on top. Day 4 does both. Core first, then cardio. Non-negotiable.</p></div></div>
+</div>
+
+<!-- ══ DAY 5 ══ -->
+<div class="panel" id="p5">
+  <div class="dhead"><div class="dnum">05</div><div class="dmeta">
+    <div class="dtitle">UPPER BODY</div>
+    <div class="dfocus">Full Upper Body Mix — Reinforce all patterns. Your "prove it" day.</div>
+    <div class="dtags"><span class="tag to">CHEST</span><span class="tag tb">BACK</span><span class="tag tp">SHOULDERS</span><span class="tag tg">ARMS</span></div>
+  </div></div>
+  <div class="slabel">EXERCISES</div>
+  <div class="exlist">
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 1</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/VmB1G1K7v94?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Dumbbell Bench Press</div><div class="exmus">Chest · Triceps · Front Delts</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>10</b><span>Reps</span></div><div class="met"><b>75s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Lie flat on bench. Dumbbells at chest level, elbows at 45° — not flared wide.</span></li>
+        <li><span class="sn">2</span><span>Feet flat on floor, slight arch in lower back, shoulder blades pressed into bench.</span></li>
+        <li><span class="sn">3</span><span>Press dumbbells up and together, fully extended arms. Lower slowly in 2–3 seconds.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Compare to Day 1. You should feel stronger and more controlled. That improvement IS your transformation happening in real time.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 2</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/6Z15_WdXmVw?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Arnold Press</div><div class="exmus">All 3 Deltoid Heads — Full Shoulder</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Sit with back support. Dumbbells at shoulder height, palms facing YOU — like top of a bicep curl.</span></li>
+        <li><span class="sn">2</span><span>As you press UP, rotate palms to face FORWARD. This rotation is the key move.</span></li>
+        <li><span class="sn">3</span><span>Press all the way up, arms extended, palms now facing away at the top.</span></li>
+        <li><span class="sn">4</span><span>Lower in reverse — rotate back so palms face you at the bottom. Full rotation every rep.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Hits all 3 parts of shoulder in one movement. Builds that rounded capped shoulder look creating the V-taper illusion.</div></div>
+    </div>
+
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">EX 3</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/GZbfZ033f74?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Cable Row (Close Grip)</div><div class="exmus">Mid Back · Lats · Biceps</div>
+          <div class="mets"><div class="met"><b>3</b><span>Sets</span></div><div class="met"><b>12</b><span>Reps</span></div><div class="met"><b>60s</b><span>Rest</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Same setup as Day 2 — close-grip neutral handle if available.</span></li>
+        <li><span class="sn">2</span><span>Sit tall, pull to midsection, shoulder blade squeeze at the end of every rep.</span></li>
+        <li><span class="sn">3</span><span>Should feel more coordinated vs Day 2. That IS progress.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Each week the same exercise feels easier — that's your signal to increase the weight slightly. That's how you keep progressing.</div></div>
+    </div>
+
+  </div>
+  <div class="cbar"><div class="cicon">🏃</div><div><div class="ctitle">Finish: 15 Min Incline Treadmill Walk</div><div class="cdesc">Speed 5.5–6 km/h · Incline 8–10% · 3× per week of this alone significantly accelerates belly fat loss.</div></div></div>
+</div>
+
+<!-- ══ DAY 6 ══ -->
+<div class="panel" id="p6">
+  <div class="dhead"><div class="dnum">06</div><div class="dmeta">
+    <div class="dtitle">ACTIVE RECOVERY</div>
+    <div class="dfocus">The secret weapon. Burns fat without breaking muscle. Never skip this.</div>
+    <div class="dtags"><span class="tag tg">LOW INTENSITY</span><span class="tag tb">WALKING</span><span class="tag to">STRETCHING</span><span class="tag tp">~50 MIN</span></div>
+  </div></div>
+  <div class="slabel">TODAY'S PLAN</div>
+  <div class="exlist">
+    <div class="excard">
+      <div class="extop">
+        <div class="vidwrap"><span class="vbadge">MAIN</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/SHStMaFzF2Y?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="exinfo"><div>
+          <div class="exname">Brisk Outdoor Walk</div><div class="exmus">Full Body Recovery · Fat Burn · Mental Reset</div>
+          <div class="mets"><div class="met"><b>40</b><span>Minutes</span></div><div class="met"><b>Zone 1</b><span>Intensity</span></div><div class="met"><b>Outside</b><span>Preferred</span></div></div>
+        </div><button class="stbtn" onclick="tog(this)"><span class="lbl">HOW TO DO IT</span><span class="arr">▼</span></button></div>
+      </div>
+      <div class="sbody"><ul class="slist">
+        <li><span class="sn">1</span><span>Walk outdoors if possible — morning sunlight resets cortisol rhythm which directly affects belly fat storage.</span></li>
+        <li><span class="sn">2</span><span>Pace: warm and slightly breathless but can hold a full conversation. About 6–7 km/h.</span></li>
+        <li><span class="sn">3</span><span>Arms swing naturally, posture upright, core lightly engaged. No slouching.</span></li>
+        <li><span class="sn">4</span><span>Follow with 10 min full-body stretching — hip flexors, hamstrings, chest, lower back.</span></li>
+      </ul><div class="tip"><strong>Trainer Tip:</strong> Zone 1–2 walking burns fat almost exclusively. After 5 hard training days, muscles are glycogen-depleted — today's walk goes straight to fat stores for energy.</div></div>
+    </div>
+  </div>
+  <div class="tnote"><div class="ticon">🌅</div><div><div class="ttitle">Why This Day Matters More Than You Think</div><p>On movie prep I never let clients skip active recovery. Your muscles repair and grow during rest — and walking keeps blood flowing to those muscles, speeding recovery so Week 2 starts stronger than Week 1 ended.</p></div></div>
+</div>
+
+<!-- ══ DAY 7 ══ -->
+<div class="panel" id="p7">
+  <div class="dhead"><div class="dnum">07</div><div class="dmeta">
+    <div class="dtitle">REST DAY</div>
+    <div class="dfocus">Growth happens here. This isn't laziness — it's the strategy. Protect this day.</div>
+    <div class="dtags"><span class="tag tg">FULL REST</span><span class="tag tb">RECOVERY</span><span class="tag tp">SLEEP 7–8H</span></div>
+  </div></div>
+  <div class="restcard">
+    <div class="remi">😴</div>
+    <div class="rtitle">YOU EARNED THIS</div>
+    <div class="rsub">6 days. You pushed, pulled, squatted, planked, and showed up.<br/>Today your body does the most important work — rebuilding stronger.<br/><br/><strong style="color:var(--white)">Sleep 7–8 hours · Eat well · Drink 3L water · No gym</strong><br/><br/>Full rest is non-negotiable. You're not being lazy. You're being smart.</div>
+  </div>
+  <div class="tnote" style="margin-top:20px"><div class="ticon">💤</div><div><div class="ttitle">The Science of Rest</div><p>During deep sleep your body releases Growth Hormone — responsible for fat breakdown and muscle repair. Actors getting 8 hours transform faster than those getting 6. Tonight your body burns fat while you sleep. Let it.</p></div></div>
+  <div class="tnote" style="margin-top:14px"><div class="ticon">📋</div><div><div class="ttitle">Sunday Reset Checklist</div><p>✅ Plan meals for the week &nbsp;·&nbsp; ✅ Prep protein (dal, tofu, paneer, eggs) &nbsp;·&nbsp; ✅ Fill water bottle tonight &nbsp;·&nbsp; ✅ Set gym bag out &nbsp;·&nbsp; ✅ Weigh in tomorrow morning fasted &nbsp;·&nbsp; ✅ Take a progress photo. You're showing up Monday again. 💪</p></div></div>
+  <div class="tnote" style="margin-top:14px"><div class="ticon">📈</div><div><div class="ttitle">Weekly Check-In Targets</div><p>Scale: Monday mornings only, fasted. Target 0.5–0.75 kg per week. Waist: every 2 weeks. Photos: every 4 weeks — monthly changes will genuinely surprise you. Your belly was last to arrive. It's last to leave. But it DOES leave.</p></div></div>
+</div>
+
+</div>
+<footer>DESIGNED FOR <em>YOUR TRANSFORMATION</em> · 7-DAY PLAN · PHASE 1 OF 3<br/>Progress photos every 4 weeks · Weigh in every Monday fasted · Trust the process</footer>
+
+<script>
+function go(n,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.db').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p'+n).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tog(btn){
+  const card=btn.closest('.excard');
+  const body=card.querySelector('.sbody');
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
+  btn.querySelector('.lbl').textContent=body.classList.contains('open')?'HIDE STEPS':'HOW TO DO IT';
+}
+</script>
+</body>
+</html>
